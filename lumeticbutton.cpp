@@ -5,13 +5,16 @@ LumeticButton::LumeticButton(QWidget *parent)
 {
     this->setStyleSheet(QString("QPushButton {border: 0px;}"));
     this->setFlat(true);
-    connect(this,&LumeticButton::pressed,this,&LumeticButton::onTrigger);
-    connect(this,&LumeticButton::released,this,&LumeticButton::outTrigger);
-    connect(animationTimer, &QTimer::timeout, this, &LumeticButton::animate);
+
     backgroundColor = QColor(Qt::white);
     textColor = QColor (Qt::black);
     highlightColor = QColor(Qt::black);
     textHighlightColor = QColor(Qt::white);
+    animationTimer= new QTimer(this);
+
+    connect(this,&LumeticButton::pressed,this,&LumeticButton::onTrigger);
+    connect(this,&LumeticButton::released,this,&LumeticButton::outTrigger);
+    connect(animationTimer, &QTimer::timeout, this, &LumeticButton::animate);
 }
 
 void LumeticButton::setFPS(double newFPS)
